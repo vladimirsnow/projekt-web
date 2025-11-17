@@ -1,0 +1,44 @@
+/* mobile.css
+   Небольшие правки для мобильных — комментарии на русском.
+*/
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 10px;
+    gap: 8px;
+  }
+  .logo img {
+    width: 110px;
+  }
+  .btn {
+    padding: 8px 12px;
+  }
+  .card-body h3 {
+    font-size: 15px;
+  }
+  .slide img {
+    width: 100%;
+  }
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  /* Уточнение: пункты меню занимают больше места и читаемы */
+  .main-nav ul {
+    gap: 14px;
+  }
+  .main-nav a {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+/* Немного исправляем точки слайдера на мобильных */
+@media (max-width: 420px) {
+  .slider-dots {
+    gap: 8px;
+  }
+  .slider-dots label {
+    width: 9px;
+    height: 9px;
+  }
+}

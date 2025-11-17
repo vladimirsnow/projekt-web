@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Контакты</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
+  </head>
+  <body>
+    <input
+      id="theme-toggle"
+      class="theme-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+    <input
+      id="menu-toggle"
+      class="menu-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+
+    <div class="site-wrapper">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="logo" href="index.html"
+            ><img src="img/game1.webp" alt="GameZone"
+          /></a>
+          <nav class="main-nav" aria-label="Главное меню">
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="reviews.html">Обзоры</a></li>
+              <li><a href="top.html">Топ</a></li>
+              <li><a href="about.html">О сайте</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </nav>
+          <label
+            for="menu-toggle"
+            class="burger"
+            role="button"
+            aria-label="Открыть меню"
+            tabindex="0"
+            ><span class="burger-line"></span><span class="burger-line"></span
+            ><span class="burger-line"></span
+          ></label>
+          <div class="theme-switch"><label for="theme-toggle">Тема</label></div>
+        </div>
+      </header>
+
+      <nav class="mobile-nav" aria-label="Мобильное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="reviews.html">Обзоры</a></li>
+          <li><a href="top.html">Топ</a></li>
+          <li><a href="about.html">О сайте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <main class="container">
+        <section class="section-intro">
+          <h1>Контакты</h1>
+          <p>
+            Свяжитесь с нами по любому вопросу — редакция, PR или поддержка
+            инди‑проектов.
+          </p>
+        </section>
+
+        <section class="two-col">
+          <div>
+            <h2 class="mt-0">Общий контакт</h2>
+            <p class="muted">
+              Почта:
+              <a class="link" href="mailto:contact@gamezone.local"
+                >contact@gamezone.local</a
+              ><br />Телефон: +7 (495) 000-00-00 (рабочие часы)
+            </p>
+
+            <h2 class="mt-18">PR и сотрудничество</h2>
+            <p class="muted">
+              Пресс‑релизы и демо для обзоров отправляйте на
+              <a class="link" href="mailto:press@gamezone.local"
+                >press@gamezone.local</a
+              >. Укажите платформы, ключи и сроки.
+            </p>
+
+            <h2 class="mt-18">Поддержка и баг‑репорты</h2>
+            <p class="muted">
+              Если заметили ошибку на сайте или у наших материалов — пишите на
+              <a class="link" href="mailto:support@gamezone.local"
+                >support@gamezone.local</a
+              >.
+            </p>
+          </div>
+
+          <aside class="aside-panel">
+            <h3 class="mt-0">Офис</h3>
+            <p class="muted">
+              Москва, ул. Примерная, 10<br />График работы: Пн–Пт, 10:00–18:00
+            </p>
+
+            <h3 class="mt-12">Социальные сети</h3>
+            <p class="muted">
+              <a class="link" href="#">Twitter</a> •
+              <a class="link" href="#">VK</a> •
+              <a class="link" href="#">Discord</a>
+            </p>
+
+            <h3 class="mt-12">Форма обратной связи</h3>
+            <form class="contact-form" action="#" method="post">
+              <input
+                class="form-input"
+                type="text"
+                name="name"
+                placeholder="Ваше имя"
+              />
+              <input
+                class="form-input"
+                type="email"
+                name="email"
+                placeholder="Email"
+              />
+              <textarea
+                class="form-textarea"
+                name="message"
+                rows="4"
+                placeholder="Сообщение"
+              ></textarea>
+              <button class="btn" type="submit">Отправить</button>
+            </form>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <p>© 2025 GameZone</p>
+          <nav class="footer-nav">
+            <a href="about.html">О сайте</a><a href="index.html">Главная</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

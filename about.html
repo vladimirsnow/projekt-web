@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>О сайте</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
+  </head>
+  <body>
+    <input
+      id="theme-toggle"
+      class="theme-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+    <input
+      id="menu-toggle"
+      class="menu-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+
+    <div class="site-wrapper">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="logo" href="index.html"
+            ><img src="img/game1.webp" alt="GameZone"
+          /></a>
+          <nav class="main-nav" aria-label="Главное меню">
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="reviews.html">Обзоры</a></li>
+              <li><a href="top.html">Топ</a></li>
+              <li><a href="about.html">О сайте</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </nav>
+          <label
+            for="menu-toggle"
+            class="burger"
+            role="button"
+            aria-label="Открыть меню"
+            tabindex="0"
+            ><span class="burger-line"></span><span class="burger-line"></span
+            ><span class="burger-line"></span
+          ></label>
+          <div class="theme-switch"><label for="theme-toggle">Тема</label></div>
+        </div>
+      </header>
+
+      <nav class="mobile-nav" aria-label="Мобильное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="reviews.html">Обзоры</a></li>
+          <li><a href="top.html">Топ</a></li>
+          <li><a href="about.html">О сайте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <main class="container">
+        <section class="section-intro">
+          <h1>О GameZone Studio</h1>
+          <p>
+            GameZone — независимая игровая студия и медиа-платформа. Мы создаём
+            контент о играх и сами разрабатываем небольшие проекты, уделяя
+            внимание игрокам и сообществу.
+          </p>
+        </section>
+
+        <section class="two-col">
+          <div>
+            <h2>Наша миссия</h2>
+            <p class="muted">
+              Делать честные обзоры и интересные игры — для тех, кто ценит
+              качество и атмосферу. Мы поддерживаем инди‑разработчиков и
+              рассказываем о студиях, вкладывающих душу в проекты.
+            </p>
+
+            <h2 style="margin-top: 18px">История</h2>
+            <p class="muted">
+              GameZone родился в 2018 как блог трёх друзей-разработчиков. За
+              несколько лет мы выросли в небольшую студию с медиа-платформой:
+              выпускаем обзоры, рейтинги и собственные экспериментальные игры.
+            </p>
+
+            <h2 style="margin-top: 18px">Чем занимаемся</h2>
+            <ul class="method-list">
+              <li>Редакционные обзоры и тесты</li>
+              <li>Составление рейтингов и подборок</li>
+              <li>Поддержка инди‑разработчиков: консультации и PR</li>
+              <li>Разработка небольших игр и демо-проектов</li>
+            </ul>
+          </div>
+
+          <aside class="aside-panel">
+            <h3 style="margin-top: 0">Наша команда</h3>
+            <p class="muted">
+              <strong>Алексей</strong> — главный редактор и продюсер.<br /><strong
+                >Мария</strong
+              >
+              — lead‑дизайнер; <strong>Иван</strong> — технический директор.
+              Более 12 фриланс‑сотрудников по направлению звука, арт и
+              тестирования.
+            </p>
+
+            <h3 style="margin-top: 12px">Карьера</h3>
+            <p class="muted">
+              Если вы разработчик, дизайнер или журналист — присылайте резюме на
+              <a href="mailto:jobs@gamezone.local" class="link"
+                >jobs@gamezone.local</a
+              >.
+            </p>
+          </aside>
+        </section>
+
+        <section class="panel">
+          <h2>Наши принципы</h2>
+          <p class="muted">
+            Честность, прозрачность и уважение к игрокам. Мы всегда указываем
+            платформы тестирования и возможные конфликты интересов.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <p>© 2025 GameZone</p>
+          <nav class="footer-nav">
+            <a href="contacts.html">Контакты</a><a href="index.html">Главная</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

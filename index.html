@@ -1,0 +1,207 @@
+<!--
+  index.html
+  Учебный сайт GameZone — главная страница.
+  Комментарии в коде на русском — простые и понятные.
+-->
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GameZone — Главная</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
+  </head>
+  <body>
+    <!-- скрытые переключатели — должны стоять перед .site-wrapper -->
+    <input
+      id="theme-toggle"
+      class="theme-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+    <input
+      id="menu-toggle"
+      class="menu-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+
+    <div class="site-wrapper">
+      <header class="site-header">
+        <div class="container header-inner">
+          <!-- логотип -->
+          <a class="logo" href="index.html" aria-label="GameZone — главная">
+            <img src="img/game1.webp" alt="GameZone" />
+          </a>
+
+          <!-- десктопная навигация -->
+          <nav class="main-nav" aria-label="Главное меню">
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="reviews.html">Обзоры</a></li>
+              <li><a href="top.html">Топ</a></li>
+              <li><a href="about.html">О сайте</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </nav>
+
+          <!-- кнопка-бургер для мобилы -->
+          <label
+            for="menu-toggle"
+            class="burger"
+            role="button"
+            aria-label="Открыть меню"
+            tabindex="0"
+          >
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </label>
+
+          <!-- переключатель темы -->
+          <div class="theme-switch" title="Переключить тему">
+            <label for="theme-toggle">Тема</label>
+          </div>
+        </div>
+      </header>
+
+      <!-- мобильное меню — содержимое совпадает с main-nav -->
+      <nav class="mobile-nav" aria-label="Мобильное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="reviews.html">Обзоры</a></li>
+          <li><a href="top.html">Топ</a></li>
+          <li><a href="about.html">О сайте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <main>
+        <section class="hero container">
+          <div class="hero-content">
+            <h1>GameZone — новости и обзоры</h1>
+            <p>Актуальные новости, честные обзоры и топы — всё для геймера.</p>
+            <label for="modal-toggle" class="btn">Открыть окно</label>
+          </div>
+        </section>
+
+        <section class="container">
+          <h2>Слайдер — избранные обзоры</h2>
+          <!-- радиокнопки слайдера -->
+          <input type="radio" name="slider" id="s1" checked />
+          <input type="radio" name="slider" id="s2" />
+          <input type="radio" name="slider" id="s3" />
+
+          <div class="slider" aria-roledescription="carousel">
+            <div class="slides">
+              <div class="slide">
+                <img src="img/game1.webp" alt="Cyber Runners" />
+                <div class="info">
+                  <h3>Cyber Runners</h3>
+                  <p class="meta">Экшн · 2025</p>
+                  <p class="excerpt">
+                    Футуристический шутер с динамичным паркуром.
+                  </p>
+                  <a class="btn small" href="#">Читать</a>
+                </div>
+              </div>
+
+              <div class="slide">
+                <img src="img/game2.webp" alt="Forest Quest" />
+                <div class="info">
+                  <h3>Forest Quest</h3>
+                  <p class="meta">RPG · 2024</p>
+                  <p class="excerpt">Атмосферная RPG с интересными квестами.</p>
+                  <a class="btn small" href="#">Читать</a>
+                </div>
+              </div>
+
+              <div class="slide">
+                <img src="img/game3.webp" alt="Mech Arena" />
+                <div class="info">
+                  <h3>Mech Arena</h3>
+                  <p class="meta">Тактические бои на мехах.</p>
+                  <p class="excerpt">Много экшена и кастомизации.</p>
+                  <a class="btn small" href="#">Читать</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- точки снизу -->
+            <div
+              class="slider-dots"
+              role="tablist"
+              aria-label="Навигация слайдов"
+            >
+              <label for="s1" role="tab" aria-controls="slide1"></label>
+              <label for="s2" role="tab" aria-controls="slide2"></label>
+              <label for="s3" role="tab" aria-controls="slide3"></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="news container">
+          <h2>Свежие новости</h2>
+          <div class="news-grid" aria-live="polite">
+            <article class="news-card">
+              <img src="img/game4.webp" alt="Новость 1" />
+              <h3>Новый трейлер</h3>
+              <p>Анонсированный трейлер вызвал волну обсуждений.</p>
+              <a href="#" class="link">Читать далее →</a>
+            </article>
+            <article class="news-card">
+              <img src="img/game5.webp" alt="Новость 2" />
+              <h3>Инди-хит</h3>
+              <p>Игра получила премию за атмосферу.</p>
+              <a href="#" class="link">Читать далее →</a>
+            </article>
+            <article class="news-card">
+              <img src="img/game6.webp" alt="Новость 3" />
+              <h3>Патч для шутера</h3>
+              <p>Новые карты и балансные изменения.</p>
+              <a href="#" class="link">Читать далее →</a>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <p>© 2025 GameZone</p>
+          <nav class="footer-nav">
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О сайте</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <input
+      id="modal-toggle"
+      class="modal-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-box">
+        <label for="modal-toggle" class="modal-close" aria-label="Закрыть окно"
+          >✕</label
+        >
+        <h2 id="modal-title">Добро пожаловать в GameZone</h2>
+        <p>Модальное окно реализовано без JavaScript — с помощью CSS.</p>
+        <p><label for="modal-toggle" class="btn">Закрыть</label></p>
+      </div>
+    </div>
+  </body>
+</html>

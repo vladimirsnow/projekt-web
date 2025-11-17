@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Топ</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
+  </head>
+  <body>
+    <input
+      id="theme-toggle"
+      class="theme-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+    <input
+      id="menu-toggle"
+      class="menu-toggle"
+      type="checkbox"
+      aria-hidden="true"
+    />
+
+    <div class="site-wrapper">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="logo" href="index.html"
+            ><img src="img/game1.webp" alt="GameZone"
+          /></a>
+          <nav class="main-nav" aria-label="Главное меню">
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="reviews.html">Обзоры</a></li>
+              <li><a href="top.html">Топ</a></li>
+              <li><a href="about.html">О сайте</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </nav>
+          <label
+            for="menu-toggle"
+            class="burger"
+            role="button"
+            aria-label="Открыть меню"
+            tabindex="0"
+            ><span class="burger-line"></span><span class="burger-line"></span
+            ><span class="burger-line"></span
+          ></label>
+          <div class="theme-switch"><label for="theme-toggle">Тема</label></div>
+        </div>
+      </header>
+
+      <nav class="mobile-nav" aria-label="Мобильное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="reviews.html">Обзоры</a></li>
+          <li><a href="top.html">Топ</a></li>
+          <li><a href="about.html">О сайте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <main class="container">
+        <h1>Топ</h1>
+        <section class="section-intro">
+          <h2>Рейтинг — лучшие игры</h2>
+          <p>
+            Подборка лучших проектов по версии редакции GameZone и голосованию
+            сообщества.
+          </p>
+        </section>
+
+        <section style="margin-bottom: 24px">
+          <ol class="top-list" aria-label="Топ игр">
+            <li class="top-item">
+              <div class="top-rank" style="color: var(--accent)">1</div>
+              <img class="top-thumb" src="img/game3.webp" alt="Space Foundry" />
+              <div>
+                <h3 style="margin: 0; color: var(--text)">Space Foundry</h3>
+                <p class="muted">
+                  Глубокая экономическая стратегия в космосе. Рейтинг: 9.4
+                </p>
+                <a class="link" href="#">Читать обзор</a>
+              </div>
+            </li>
+
+            <li class="top-item">
+              <div class="top-rank" style="color: #7c5cff">2</div>
+              <img class="top-thumb" src="img/game1.webp" alt="Cyber Runners" />
+              <div>
+                <h3 style="margin: 0; color: var(--text)">Cyber Runners</h3>
+                <p class="muted">
+                  Футуристический шутер с паркуром. Рейтинг: 9.0
+                </p>
+                <a class="link" href="#">Читать обзор</a>
+              </div>
+            </li>
+
+            <li class="top-item">
+              <div class="top-rank" style="color: #06b6d4">3</div>
+              <img class="top-thumb" src="img/game2.webp" alt="Forest Quest" />
+              <div>
+                <h3 style="margin: 0; color: var(--text)">Forest Quest</h3>
+                <p class="muted">
+                  Атмосферная RPG с глубокими квестами. Рейтинг: 8.7
+                </p>
+                <a class="link" href="#">Читать обзор</a>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="panel">
+          <h2>Как формируется топ</h2>
+          <p class="muted">
+            Топ составлен по сумме оценок редакции и отзывов пользователей за
+            последние 12 месяцев. Мы учитываем обновления, активность сообщества
+            и техническую поддержку разработчиков.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <p>© 2025 GameZone</p>
+          <nav class="footer-nav">
+            <a href="contacts.html">Контакты</a><a href="about.html">О сайте</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
