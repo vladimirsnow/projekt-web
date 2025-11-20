@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Контакты</title>
+    <title>Контакты — Digital Forge Studio</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
@@ -11,14 +11,18 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mobile.css" />
+    <script>
+    // JS для предотвращения мерцания темы (загружается синхронно)
+    const THEME_KEY = 'df-theme';
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    
+    // Проверяем сохраненную тему или системную настройку (если тема не сохранена)
+    if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.body.classList.add('light-theme');
+    }
+</script>
   </head>
   <body>
-    <input
-      id="theme-toggle"
-      class="theme-toggle"
-      type="checkbox"
-      aria-hidden="true"
-    />
     <input
       id="menu-toggle"
       class="menu-toggle"
@@ -29,15 +33,15 @@
     <div class="site-wrapper">
       <header class="site-header">
         <div class="container header-inner">
-          <a class="logo" href="index.html"
-            ><img src="img/game1.webp" alt="GameZone"
+          <a class="logo" href="index.html" aria-label="Digital Forge Studio — главная"
+            ><img src="img/game1.png" alt="Digital Forge Studio"
           /></a>
           <nav class="main-nav" aria-label="Главное меню">
             <ul>
               <li><a href="index.html">Главная</a></li>
-              <li><a href="reviews.html">Обзоры</a></li>
-              <li><a href="top.html">Топ</a></li>
-              <li><a href="about.html">О сайте</a></li>
+              <li><a href="services.html">Услуги</a></li>
+              <li><a href="portfolio.html">Портфолио</a></li>
+              <li><a href="about.html">О студии</a></li>
               <li><a href="contacts.html">Контакты</a></li>
             </ul>
           </nav>
@@ -47,70 +51,61 @@
             role="button"
             aria-label="Открыть меню"
             tabindex="0"
-            ><span class="burger-line"></span><span class="burger-line"></span
-            ><span class="burger-line"></span
-          ></label>
-          <div class="theme-switch"><label for="theme-toggle">Тема</label></div>
+          >
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </label>
+
+          <button id="theme-switch-btn" class="theme-switch-btn" title="Переключить тему" aria-label="Переключить тему">
+            Тема
+          </button>
         </div>
       </header>
 
       <nav class="mobile-nav" aria-label="Мобильное меню">
         <ul>
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="reviews.html">Обзоры</a></li>
-          <li><a href="top.html">Топ</a></li>
-          <li><a href="about.html">О сайте</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="portfolio.html">Портфолио</a></li>
+            <li><a href="about.html">О студии</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
 
-      <main class="container">
-        <section class="section-intro">
-          <h1>Контакты</h1>
+      <main>
+        <section class="container section-intro">
+          <h1>Свяжитесь с нами</h1>
           <p>
-            Свяжитесь с нами по любому вопросу — редакция, PR или поддержка
-            инди‑проектов.
+            Мы всегда готовы обсудить ваш следующий цифровой проект.
           </p>
         </section>
 
-        <section class="two-col">
-          <div>
-            <h2 class="mt-0">Общий контакт</h2>
+        <section class="container two-col">
+          <div class="panel">
+            <h2>Где нас найти</h2>
             <p class="muted">
-              Почта:
-              <a class="link" href="mailto:contact@gamezone.local"
-                >contact@gamezone.local</a
-              ><br />Телефон: +7 (495) 000-00-00 (рабочие часы)
+              Вы можете отправить нам сообщение, позвонить или посетить наш офис
+              в рабочее время.
             </p>
-
-            <h2 class="mt-18">PR и сотрудничество</h2>
+            <h3 class="mt-12">Контактная информация</h3>
             <p class="muted">
-              Пресс‑релизы и демо для обзоров отправляйте на
-              <a class="link" href="mailto:press@gamezone.local"
-                >press@gamezone.local</a
-              >. Укажите платформы, ключи и сроки.
+              Email:
+              <a class="link" href="mailto:contact@digitalforge.local">contact@digitalforge.local</a><br />
+              Телефон: +7 (495) 123-45-67
             </p>
-
-            <h2 class="mt-18">Поддержка и баг‑репорты</h2>
+            <h3 class="mt-12">Адрес и время</h3>
             <p class="muted">
-              Если заметили ошибку на сайте или у наших материалов — пишите на
-              <a class="link" href="mailto:support@gamezone.local"
-                >support@gamezone.local</a
-              >.
+              Москва, ул. Цифровая, 25<br />График работы: Пн–Пт, 10:00–19:00
             </p>
           </div>
 
           <aside class="aside-panel">
-            <h3 class="mt-0">Офис</h3>
-            <p class="muted">
-              Москва, ул. Примерная, 10<br />График работы: Пн–Пт, 10:00–18:00
-            </p>
-
-            <h3 class="mt-12">Социальные сети</h3>
+            <h3 style="margin-top: 0">Социальные сети</h3>
             <p class="muted">
               <a class="link" href="#">Twitter</a> •
               <a class="link" href="#">VK</a> •
-              <a class="link" href="#">Discord</a>
+              <a class="link" href="#">Telegram</a>
             </p>
 
             <h3 class="mt-12">Форма обратной связи</h3>
@@ -125,15 +120,15 @@
                 class="form-input"
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email для ответа"
               />
               <textarea
                 class="form-textarea"
                 name="message"
                 rows="4"
-                placeholder="Сообщение"
+                placeholder="Подробно опишите ваш проект или вопрос"
               ></textarea>
-              <button class="btn" type="submit">Отправить</button>
+              <button class="btn" type="submit">Отправить запрос</button>
             </form>
           </aside>
         </section>
@@ -141,12 +136,31 @@
 
       <footer class="site-footer">
         <div class="container footer-inner">
-          <p>© 2025 GameZone</p>
+          <p>© 2025 Digital Forge Studio</p>
           <nav class="footer-nav">
-            <a href="about.html">О сайте</a><a href="index.html">Главная</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О студии</a>
           </nav>
         </div>
       </footer>
     </div>
+
+    <div
+      id="main-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-box">
+        <button id="close-modal-btn-x" class="modal-close" aria-label="Закрыть окно">
+          ✕
+        </button>
+        <h2 id="modal-title">Обсудим ваш проект!</h2>
+        <p>Оставьте заявку, и мы свяжемся с вами, чтобы обсудить детали и предложить индивидуальное решение.</p>
+        <p><button id="close-modal-btn-footer" class="btn">Закрыть</button></p>
+      </div>
+    </div>
+    <script src="js/script.js" defer></script>
   </body>
 </html>

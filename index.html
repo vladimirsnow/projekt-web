@@ -1,14 +1,9 @@
-<!--
-  index.html
-  Учебный сайт GameZone — главная страница.
-  Комментарии в коде на русском — простые и понятные.
--->
 <!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>GameZone — Главная</title>
+    <title>Digital Forge Studio — Главная</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
@@ -16,15 +11,18 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mobile.css" />
+
+    <script>
+        const THEME_KEY = 'df-theme';
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        
+        // Применяем сохраненную тему или системную настройку по умолчанию
+        if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.body.classList.add('light-theme');
+        }
+    </script>
   </head>
   <body>
-    <!-- скрытые переключатели — должны стоять перед .site-wrapper -->
-    <input
-      id="theme-toggle"
-      class="theme-toggle"
-      type="checkbox"
-      aria-hidden="true"
-    />
     <input
       id="menu-toggle"
       class="menu-toggle"
@@ -35,23 +33,18 @@
     <div class="site-wrapper">
       <header class="site-header">
         <div class="container header-inner">
-          <!-- логотип -->
-          <a class="logo" href="index.html" aria-label="GameZone — главная">
-            <img src="img/game1.webp" alt="GameZone" />
+          <a class="logo" href="index.html" aria-label="Digital Forge Studio — главная">
+            <img src="img/game1.png" alt="Digital Forge Studio"/>
           </a>
-
-          <!-- десктопная навигация -->
           <nav class="main-nav" aria-label="Главное меню">
             <ul>
               <li><a href="index.html">Главная</a></li>
-              <li><a href="reviews.html">Обзоры</a></li>
-              <li><a href="top.html">Топ</a></li>
-              <li><a href="about.html">О сайте</a></li>
+              <li><a href="services.html">Услуги</a></li>
+              <li><a href="portfolio.html">Портфолио</a></li>
+              <li><a href="about.html">О студии</a></li>
               <li><a href="contacts.html">Контакты</a></li>
             </ul>
           </nav>
-
-          <!-- кнопка-бургер для мобилы -->
           <label
             for="menu-toggle"
             class="burger"
@@ -63,21 +56,23 @@
             <span class="burger-line"></span>
             <span class="burger-line"></span>
           </label>
-
-          <!-- переключатель темы -->
-          <div class="theme-switch" title="Переключить тему">
-            <label for="theme-toggle">Тема</label>
-          </div>
+          <button
+            id="theme-switch-btn"
+            class="theme-switch-btn"
+            title="Переключить тему"
+            aria-label="Переключить тему"
+          >
+            Тема
+          </button>
         </div>
       </header>
 
-      <!-- мобильное меню — содержимое совпадает с main-nav -->
       <nav class="mobile-nav" aria-label="Мобильное меню">
         <ul>
           <li><a href="index.html">Главная</a></li>
-          <li><a href="reviews.html">Обзоры</a></li>
-          <li><a href="top.html">Топ</a></li>
-          <li><a href="about.html">О сайте</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="portfolio.html">Портфолио</a></li>
+          <li><a href="about.html">О студии</a></li>
           <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
@@ -85,86 +80,84 @@
       <main>
         <section class="hero container">
           <div class="hero-content">
-            <h1>GameZone — новости и обзоры</h1>
-            <p>Актуальные новости, честные обзоры и топы — всё для геймера.</p>
-            <label for="modal-toggle" class="btn">Открыть окно</label>
+            <h1>Создаем будущее вашего бизнеса в Digital</h1>
+            <p>
+              Полный цикл веб-разработки: от идеи и дизайна до запуска и
+              масштабирования.
+            </p>
+            <button id="open-modal-btn" class="btn">Обсудить проект</button>
           </div>
         </section>
 
         <section class="container">
-          <h2>Слайдер — избранные обзоры</h2>
-          <!-- радиокнопки слайдера -->
-          <input type="radio" name="slider" id="s1" checked />
-          <input type="radio" name="slider" id="s2" />
-          <input type="radio" name="slider" id="s3" />
+          <h2>Наши лучшие работы</h2>
+          <div class="slider">
+            <button id="prev-slide-btn" class="slider-nav-btn prev" aria-label="Предыдущий слайд">
+                &lt;
+            </button>
+            <button id="next-slide-btn" class="slider-nav-btn next" aria-label="Следующий слайд">
+                &gt;
+            </button>
 
-          <div class="slider" aria-roledescription="carousel">
-            <div class="slides">
+            <div id="slides-container">
               <div class="slide">
-                <img src="img/game1.webp" alt="Cyber Runners" />
+                <img src="img/game1.png" alt="Проект 1: E-commerce" style="max-width: 200px; max-height: 350px;" />
                 <div class="info">
-                  <h3>Cyber Runners</h3>
-                  <p class="meta">Экшн · 2025</p>
-                  <p class="excerpt">
-                    Футуристический шутер с динамичным паркуром.
+                  <h3>Платформа E-commerce</h3>
+                  <p class="muted">
+                    Разработанный с нуля интернет-магазин с высокой конверсией
+                    и мобильной адаптацией.
                   </p>
-                  <a class="btn small" href="#">Читать</a>
                 </div>
               </div>
 
               <div class="slide">
-                <img src="img/game2.webp" alt="Forest Quest" />
+                <img src="img/game2.webp" alt="Проект 2: SaaS-приложение" style="max-width: 200px; max-height: 350px;"/>
                 <div class="info">
-                  <h3>Forest Quest</h3>
-                  <p class="meta">RPG · 2024</p>
-                  <p class="excerpt">Атмосферная RPG с интересными квестами.</p>
-                  <a class="btn small" href="#">Читать</a>
+                  <h3>SaaS для аналитики</h3>
+                  <p class="muted">
+                    Интерактивный дашборд для визуализации больших данных.
+                    Ускоренная загрузка на 40%.
+                  </p>
                 </div>
               </div>
 
               <div class="slide">
-                <img src="img/game3.webp" alt="Mech Arena" />
+                <img src="img/game3.webp" alt="Проект 3: Корпоративный сайт" style="max-width: 300px; max-height: 450px;"/>
                 <div class="info">
-                  <h3>Mech Arena</h3>
-                  <p class="meta">Тактические бои на мехах.</p>
-                  <p class="excerpt">Много экшена и кастомизации.</p>
-                  <a class="btn small" href="#">Читать</a>
+                  <h3>Корпоративный веб-сайт</h3>
+                  <p class="muted">
+                    Премиальный дизайн и SEO-оптимизация для крупного
+                    финансового холдинга.
+                  </p>
                 </div>
               </div>
             </div>
 
-            <!-- точки снизу -->
-            <div
-              class="slider-dots"
-              role="tablist"
-              aria-label="Навигация слайдов"
-            >
-              <label for="s1" role="tab" aria-controls="slide1"></label>
-              <label for="s2" role="tab" aria-controls="slide2"></label>
-              <label for="s3" role="tab" aria-controls="slide3"></label>
-            </div>
+            <div id="slider-dots" class="slider-dots">
+              </div>
           </div>
         </section>
 
-        <section class="news container">
-          <h2>Свежие новости</h2>
-          <div class="news-grid" aria-live="polite">
+        <section class="container">
+          <h2>Последние из блога</h2>
+          <div class="news-grid">
             <article class="news-card">
               <img src="img/game4.webp" alt="Новость 1" />
-              <h3>Новый трейлер</h3>
-              <p>Анонсированный трейлер вызвал волну обсуждений.</p>
+              <h3>Тренд 2025: Motion UI</h3>
+              <p>Как анимация улучшает UX и увеличивает вовлеченность.</p>
               <a href="#" class="link">Читать далее →</a>
             </article>
             <article class="news-card">
               <img src="img/game5.webp" alt="Новость 2" />
-              <h3>Инди-хит</h3>
-              <p>Игра получила премию за атмосферу.</p>
+              <h3>Секреты быстрого React</h3>
+              <p>Оптимизация производительности в современных фреймворках.</p>
               <a href="#" class="link">Читать далее →</a>
             </article>
             <article class="news-card">
               <img src="img/game6.webp" alt="Новость 3" />
-              <h3>Патч для шутера</h3>
-              <p>Новые карты и балансные изменения.</p>
+              <h3>Backend на Node.js</h3>
+              <p>Выбираем архитектуру для масштабируемых API.</p>
               <a href="#" class="link">Читать далее →</a>
             </article>
           </div>
@@ -173,35 +166,31 @@
 
       <footer class="site-footer">
         <div class="container footer-inner">
-          <p>© 2025 GameZone</p>
+          <p>© 2025 Digital Forge Studio</p>
           <nav class="footer-nav">
             <a href="contacts.html">Контакты</a>
-            <a href="about.html">О сайте</a>
+            <a href="about.html">О студии</a>
           </nav>
         </div>
       </footer>
     </div>
 
-    <input
-      id="modal-toggle"
-      class="modal-toggle"
-      type="checkbox"
-      aria-hidden="true"
-    />
     <div
+      id="main-modal"
       class="modal"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div class="modal-box">
-        <label for="modal-toggle" class="modal-close" aria-label="Закрыть окно"
-          >✕</label
-        >
-        <h2 id="modal-title">Добро пожаловать в GameZone</h2>
-        <p>Модальное окно реализовано без JavaScript — с помощью CSS.</p>
-        <p><label for="modal-toggle" class="btn">Закрыть</label></p>
+        <button id="close-modal-btn-x" class="modal-close" aria-label="Закрыть окно">
+          ✕
+        </button>
+        <h2 id="modal-title">Обсудим ваш проект!</h2>
+        <p>Оставьте заявку, и мы свяжемся с вами, чтобы обсудить детали и предложить индивидуальное решение.</p>
+        <p><button id="close-modal-btn-footer" class="btn">Закрыть</button></p>
       </div>
     </div>
+    <script src="js/script.js" defer></script>
   </body>
 </html>

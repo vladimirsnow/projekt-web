@@ -1,82 +1,75 @@
-/* style.css
-   Основные стили GameZone — улучшенный дизайн и понятные русские комментарии.
+/*
+   style.css
+   Основные стили Digital Forge Studio.
+   Вся динамика (тема, модал, слайдер) вынесена в JS.
 */
 
 /* ---------------------------
-   Переменные темы (ТЁМНАЯ по умолчанию)
+   1. Переменные темы (ТЁМНАЯ по умолчанию)
    --------------------------- */
 :root {
-  /* Тёмная тема */
-  --bg: #0a0e27;
-  --card: #111a3a;
-  --accent: #6366f1;
-  --accent-2: #06b6d4;
-  --text: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --muted: #94a3b8;
-  --border: #1e293b;
-  --header-bg: rgba(15, 23, 42, 0.95);
+  /* Тёмная тема - Глубокий, современный вид */
+  --bg: #0d112b;
+  --card: #161c40;
+  --accent: #8b5cf6; /* Фиолетовый акцент */
+  --accent-2: #34d399; /* Мятно-зеленый акцент */
+  --text: #e2e8f0;
+  --text-secondary: #a1aabf;
+  --muted: #64748b;
+  --border: #2d3748;
+  --header-bg: rgba(13, 17, 43, 0.95);
   --radius: 12px;
-  --gap: 18px;
-  --transition: 200ms ease;
+  --gap: 24px; /* Увеличенный отступ между секциями */
+  --transition: 280ms ease;
   --fs-base: 16px;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* При включённой светлой теме — меняем ВСЕ переменные */
-.theme-toggle:checked ~ .site-wrapper {
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --accent: #4f46e5;
-  --accent-2: #0891b2;
-  --text: #0f172a;
-  --text-secondary: #334155;
-  --muted: #64748b;
+/* При добавлении класса .light-theme на <body> — светлая тема */
+.light-theme {
+  --bg: #ffffff;
+  --card: #f8faff;
+  --accent: #7c3aed;
+  --accent-2: #10b981;
+  --text: #1e293b;
+  --text-secondary: #475569;
+  --muted: #94a3b8;
   --border: #e2e8f0;
-  --header-bg: rgba(248, 250, 252, 0.95);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Переключение темы — плавные переходы (применяется ко всем элементам) */
+body,
+.site-wrapper,
+.site-wrapper * {
+  transition: background 280ms ease, color 280ms ease, border-color 280ms ease,
+    box-shadow 280ms ease;
 }
 
 /* ---------------------------
-   Базовые стили страницы
+   2. Базовые стили и общие компоненты
    --------------------------- */
 html,
 body {
   background: var(--bg);
   color: var(--text);
-  transition: background var(--transition), color var(--transition);
 }
 
 body {
   font-size: var(--fs-base);
-  -webkit-font-smoothing: antialiased;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial;
-  -webkit-font-variant-ligatures: none;
 }
 
-/* Обёртка сайта */
+/* Главный контейнер */
 .site-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
-  color: var(--text);
-  transition: background var(--transition), color var(--transition);
 }
 
-/* Скрываем видимые чекбоксы/радио, оставляя их в DOM для aria */
-.theme-toggle,
-input[name="slider"] {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-/* Скрываем input для бургера, но оставляем в DOM для aria */
+/* Скрываем инпут для меню (для CSS-логики мобильного меню) */
 .menu-toggle {
   position: absolute;
   left: -9999px;
@@ -86,7 +79,23 @@ input[name="slider"] {
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-/* Хедер */
+/* Отступы для контента и фикс мерцания футера */
+main {
+    flex: 1; /* Гарантирует, что main займет доступное место */
+    padding-bottom: 60px; /* ДОБАВЛЕНО: Отступ перед футером на каждой странице */
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.section-intro {
+  margin: 28px 0;
+}
+
+/* ---------------------------
+   3. Хедер и Навигация
+   --------------------------- */
 .header-inner,
 .footer-inner {
   display: flex;
@@ -101,20 +110,17 @@ input[name="slider"] {
   background: var(--header-bg);
   z-index: 50;
   border-bottom: 1px solid var(--border);
-  transition: background var(--transition), border-color var(--transition);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Логотип */
 .logo img {
   display: block;
   width: 140px;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: box-shadow var(--transition);
 }
 
-/* Навигация */
 .main-nav ul {
   display: flex;
   gap: 14px;
@@ -129,10 +135,52 @@ input[name="slider"] {
   font-size: 15px;
 }
 .main-nav a:hover {
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(139, 92, 246, 0.1); /* Цвет акцента с прозрачностью */
   color: var(--accent);
 }
 
+/* Кнопка переключателя темы (JS) */
+.theme-switch-btn {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(148, 163, 184, 0.1);
+  transition: background var(--transition), color var(--transition);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 14px;
+}
+.theme-switch-btn:hover {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text);
+}
+
+/* Бургер для мобильного */
+.burger {
+    display: none; /* Скрыт на десктопе */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+.burger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+/* ---------------------------
+   4. Стили элементов контента
+   --------------------------- */
 /* Кнопки */
 .btn {
   display: inline-block;
@@ -142,46 +190,29 @@ input[name="slider"] {
   border-radius: 8px;
   font-weight: 600;
   transition: transform var(--transition), box-shadow var(--transition);
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
   cursor: pointer;
   border: none;
+  text-align: center;
 }
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
 }
 .btn.small {
   padding: 8px 14px;
   font-size: 14px;
 }
 
-/* Текст переключателя темы (кнопка-лейбл) */
-.theme-switch {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--muted);
-}
-.theme-switch label {
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: rgba(148, 163, 184, 0.1);
-  transition: background var(--transition), color var(--transition);
-  border: 1px solid var(--border);
-}
-.theme-switch label:hover {
-  background: rgba(148, 163, 184, 0.15);
+/* Заголовки */
+main h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
   color: var(--text);
 }
-
-/* ---------------------------
-   Херо секция
-   --------------------------- */
 .hero {
-  position: relative;
-  padding: 48px 0;
+  padding: 60px 0; /* Увеличили padding */
 }
 .hero-content {
   text-align: center;
@@ -189,10 +220,10 @@ input[name="slider"] {
   margin: 0 auto;
 }
 .hero h1 {
-  font-size: 42px;
+  font-size: 48px; /* Увеличен размер заголовка */
   font-weight: 700;
   margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -200,21 +231,11 @@ input[name="slider"] {
 }
 .hero p {
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: 28px; /* Увеличен отступ */
   font-size: 18px;
 }
 
-/* Основные h2 */
-main h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--text);
-}
-
-/* ---------------------------
-   Новости сетка
-   --------------------------- */
+/* Новости сетка (Карточки) */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -224,48 +245,45 @@ main h2 {
 .news-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 16px; /* Более мягкие углы */
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition),
     border-color var(--transition);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .news-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
   border-color: var(--accent);
 }
 .news-card img {
   width: 100%;
-  height: 200px;
+  height: 220px; /* Увеличенная высота */
   object-fit: cover;
 }
 .news-card h3 {
-  margin: 12px 12px 8px;
-  color: var(--text);
+  margin: 12px 16px 8px; /* Обновлен отступ */
   font-size: 18px;
   font-weight: 600;
 }
 .news-card p {
   color: var(--muted);
   font-size: 14px;
-  margin: 0 12px;
+  margin: 0 16px;
   line-height: 1.5;
 }
 .link {
   display: inline-block;
   color: var(--accent);
   font-weight: 600;
-  margin: 8px 12px;
+  margin: 12px 16px; /* Обновлен отступ */
   transition: color var(--transition);
 }
 .link:hover {
   color: var(--accent-2);
 }
 
-/* ---------------------------
-   Каталог игр
-   --------------------------- */
+/* Каталог услуг (Карточки) - Services.html */
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -275,7 +293,7 @@ main h2 {
 .game-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -284,7 +302,7 @@ main h2 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .game-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   box-shadow: var(--shadow);
   border-color: var(--accent);
 }
@@ -294,48 +312,74 @@ main h2 {
   object-fit: cover;
 }
 .card-body {
-  padding: 12px;
+  padding: 16px; /* Увеличен отступ */
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-.card-body h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
+  gap: 8px;
 }
 .card-body .meta {
-  color: var(--muted);
-  font-size: 12px;
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
 }
 .card-body .excerpt {
-  color: var(--text-secondary);
-  font-size: 14px;
-  flex: 1;
-  line-height: 1.5;
+    flex-grow: 1;
+    color: var(--text-secondary);
 }
 
+
 /* ---------------------------
-   Слайдер (pure CSS)
+   5. Слайдер (JS Logic) - Index.html
    --------------------------- */
 .slider {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--card);
   border: 1px solid var(--border);
-  padding: 16px;
+  padding: 24px; /* Увеличен отступ */
   margin-top: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background var(--transition), border-color var(--transition),
-    box-shadow var(--transition);
+  box-shadow: var(--shadow);
 }
 
-.slides {
+/* Кнопки навигации слайдера (Prev/Next) */
+.slider-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-bottom: 2px; /* Визуальный фикс для символа */
+}
+.slider-nav-btn:hover {
+    background: var(--accent); /* Используем цвет темы */
+    transform: translateY(-50%) scale(1.1);
+}
+.slider-nav-btn.prev {
+    left: 8px;
+}
+.slider-nav-btn.next {
+    right: 8px;
+}
+
+#slides-container { 
   display: flex;
+  /* Важно: cubic-bezier делает скролл красивым */
   transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  gap: 18px;
+  gap: 24px;
   will-change: transform;
   align-items: stretch;
 }
@@ -345,14 +389,14 @@ main h2 {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: var(--gap);
   padding: 8px;
 }
 .slide img {
   width: 44%;
   border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 .slide .info {
@@ -360,36 +404,19 @@ main h2 {
   flex: 1;
 }
 .slide h3 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--text);
-}
-.slide .meta {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-.slide .excerpt {
-  color: var(--text-secondary);
-  font-size: 14px;
-  margin-bottom: 12px;
-  line-height: 1.5;
 }
 
-/* Навигация слайдера (кнопки стрелок) — СКРЫВАЕМ */
-.slider-nav {
-  display: none !important;
-}
-
-/* Точки (кнопки) внизу — ВСЕ 3 точки видны */
+/* Точки (кнопки) внизу */
 .slider-dots {
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 24px; /* Увеличен отступ */
 }
-.slider-dots label {
+.dot-btn {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -398,36 +425,22 @@ main h2 {
   cursor: pointer;
   transition: background var(--transition), transform var(--transition);
   border: 1px solid var(--border);
+  padding: 0;
 }
 
-/* Активная точка */
-#s1:checked ~ .slider .slider-dots label[for="s1"],
-#s2:checked ~ .slider .slider-dots label[for="s2"],
-#s3:checked ~ .slider .slider-dots label[for="s3"] {
+/* Активная точка (управляется JS классом .active) */
+.slider-dots .dot-btn.active {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
   transform: scale(1.2);
 }
 
-/* Перемещение слайдов */
-#s1:checked ~ .slider .slides {
-  transform: translateX(0%);
-}
-#s2:checked ~ .slider .slides {
-  transform: translateX(-100%);
-}
-#s3:checked ~ .slider .slides {
-  transform: translateX(-200%);
-}
 
 /* ---------------------------
-   Модальное окно
+   6. Модальное окно (JS Logic)
    --------------------------- */
-.modal-toggle {
-  display: none;
-}
 .modal {
-  display: none;
+  display: none; /* Скрыто по умолчанию */
   position: fixed;
   left: 0;
   top: 0;
@@ -435,64 +448,164 @@ main h2 {
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7); /* Более темный оверлей */
   z-index: 9999;
   padding: 20px;
   backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none; /* Игнорировать клики, пока не открыт */
 }
+
+/* Класс .open для отображения модального окна через JS */
+.modal.open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .modal-box {
   background: var(--card);
   border: 1px solid var(--border);
-  padding: 24px;
-  border-radius: 12px;
+  padding: 32px; /* Более просторное модальное окно */
+  border-radius: 16px;
   max-width: 720px;
   width: 100%;
-  color: var(--text);
   position: relative;
   box-shadow: var(--shadow);
-  transition: background var(--transition), border-color var(--transition),
-    color var(--transition);
+  transform: scale(0.95);
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+/* Анимация при открытии */
+.modal.open .modal-box {
+    transform: scale(1);
+}
+
 .modal-box h2 {
   margin-bottom: 16px;
-  font-size: 24px;
-  color: var(--text);
-}
-.modal-box p {
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-  line-height: 1.6;
+  font-size: 28px;
 }
 .modal-close {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 18px;
+  top: 18px;
   background: transparent;
   color: var(--muted);
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 24px;
   transition: color var(--transition), background var(--transition);
   border: none;
 }
 .modal-close:hover {
-  color: var(--text);
-  background: rgba(99, 102, 241, 0.1);
-}
-.modal-toggle:checked + .modal {
-  display: flex;
+    color: var(--text);
 }
 
+
 /* ---------------------------
-   Подвал
+   7. Вспомогательные секции (About.html, Portfolio.html, Contacts.html)
+   --------------------------- */
+.panel {
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--gap);
+}
+.aside-panel {
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+.method-panel {
+    margin-top: 28px;
+}
+.method-list {
+    color: var(--muted);
+    margin-top: 12px;
+    padding-left: 18px;
+    line-height: 1.8;
+}
+.method-list strong {
+    color: var(--text);
+}
+
+/* Стили для топ-списка (Portfolio.html) */
+.top-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.top-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s ease;
+}
+.top-item:hover {
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+}
+.top-item:last-child {
+  margin-bottom: 0;
+}
+.top-rank {
+  font-weight: 800;
+  font-size: 22px;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.top-thumb {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+
+/* Контактная форма (Contacts.html) */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Увеличенный отступ */
+  margin-top: 16px;
+}
+.form-input,
+.form-textarea {
+  padding: 12px; /* Увеличенный padding */
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg); /* Используем фоновый цвет страницы */
+  color: var(--text);
+  font: inherit;
+  width: 100%;
+}
+.form-textarea {
+  resize: vertical;
+}
+
+
+/* ---------------------------
+   8. Подвал
    --------------------------- */
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 20px 0;
-  margin-top: auto;
+  padding: 24px 0;
   background: var(--card);
-  transition: background var(--transition), border-color var(--transition);
+  flex-shrink: 0; /* Гарантирует, что футер не сожмется */
 }
 .footer-nav {
   display: flex;
@@ -501,14 +614,14 @@ main h2 {
 .footer-nav a {
   color: var(--muted);
   font-size: 14px;
-  transition: color var(--transition);
 }
 .footer-nav a:hover {
-  color: var(--accent);
+    color: var(--accent);
 }
 
+
 /* ---------------------------
-   Адаптив
+   9. Адаптив и Мобильное меню
    --------------------------- */
 @media (max-width: 1023px) {
   .catalog-grid {
@@ -517,185 +630,82 @@ main h2 {
   .news-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .slide img {
-    width: 40%;
+  .two-col {
+    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 767px) {
-  .catalog-grid {
-    grid-template-columns: 1fr;
-  }
-  .news-grid {
-    grid-template-columns: 1fr;
-  }
-  .slide {
-    flex-direction: column;
-  }
-  .slide img {
-    width: 100%;
-  }
-  .slider-nav {
-    display: none;
-  }
-  .hero h1 {
-    font-size: 28px;
-  }
-
-  /* Мобильное меню — по умолчанию скрыто, выезжает сверху */
-  .main-nav {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 100vh;
-    padding: 80px 20px 24px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6));
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    transform: translateY(-100%);
-    transition: transform 300ms cubic-bezier(0.2, 0.9, 0.2, 1);
-    z-index: 80;
-    backdrop-filter: blur(6px);
-  }
-
-  /* Когда чекбокс меню отмечен — показываем меню */
-  #menu-toggle:checked + .site-wrapper .site-header .main-nav,
-  #menu-toggle:checked + .site-wrapper .main-nav {
-    transform: translateY(0%);
-  }
-
-  .main-nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    align-items: center;
-  }
-  .main-nav a {
-    font-size: 18px;
-    padding: 12px 18px;
-    color: var(--text);
-    background: transparent;
-    border-radius: 10px;
-  }
-  .main-nav a:hover {
-    background: rgba(255, 255, 255, 0.03);
-    color: var(--accent-2);
-  }
-
-  /* Показываем бургер на мобильных вместо обычной навигации */
-  .burger {
-    display: inline-flex;
-  }
-
-  /* Скрываем обычную навигацию в хедере (оставляем для десктопа) */
-  .header-inner .main-nav {
-    display: block; /* keep DOM but visually managed by transform */
-  }
-
-  /* Уменьшаем логотип на мобильных, чтобы место хватило */
-  .logo img {
-    width: 120px;
-  }
+    .hero h1 {
+        font-size: 32px;
+    }
+    main h2 {
+        font-size: 26px;
+    }
+    .catalog-grid, .news-grid {
+        grid-template-columns: 1fr;
+    }
+    .slide {
+        flex-direction: column;
+    }
+    .slide img {
+        width: 100%;
+        height: 200px;
+    }
+    .main-nav {
+        display: none; /* Скрываем десктопную навигацию */
+    }
+    .burger {
+        display: inline-flex; /* Показываем бургер */
+    }
+    .theme-switch-btn {
+        margin-right: 12px;
+    }
+    .header-inner {
+        padding: 12px 16px;
+    }
+    /* Скрываем кнопки слайдера на мобильных */
+    .slider-nav-btn {
+        display: none;
+    }
 }
-
-/* Важное: на десктопе навигация остаётся горизонтальной */
-@media (min-width: 768px) {
-  .main-nav {
-    position: static;
-    transform: none;
-    height: auto;
-    padding: 0;
-    background: transparent;
-    display: block;
-  }
-  .main-nav ul {
-    display: flex;
-    gap: 14px;
-    align-items: center;
-  }
-  .burger {
-    display: none;
-  }
-}
-
-/* ===== добавленный блок: правое выезжающее мобильное меню, бургер, overlay ===== */
-
-/* Скрытые чекбоксы (если ещё не определены) */
-.theme-toggle,
-.menu-toggle {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-/* БУРГЕР — кнопка */
-.burger {
-  display: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  background: transparent;
-  padding: 8px;
-  flex-shrink: 0;
-}
-.burger .burger-line {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: var(--text);
-  margin: 3px 0;
-  border-radius: 2px;
-  transition: transform 180ms ease, opacity 180ms ease;
-}
-
-/* Правое выезжающее меню */
+/* Мобильное меню (CSS-логика для его открытия/закрытия) */
 .mobile-nav {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 320px;
-  max-width: 92%;
-  background: var(--card);
-  border-left: 1px solid var(--border);
-  transform: translateX(100%);
-  transition: transform 320ms cubic-bezier(0.2, 0.9, 0.2, 1);
-  z-index: 120;
-  padding: 84px 20px 24px;
-  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35);
-  overflow-y: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 320px;
+    max-width: 92%;
+    background: var(--card);
+    border-left: 1px solid var(--border);
+    transform: translateX(100%);
+    transition: transform 320ms cubic-bezier(0.2, 0.9, 0.2, 1);
+    z-index: 120;
+    padding: 84px 20px 24px;
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
 }
-
-/* Список пунктов меню */
 .mobile-nav ul {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 .mobile-nav a {
-  display: block;
-  padding: 12px 14px;
-  border-radius: 8px;
-  color: var(--text);
-  font-weight: 700;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
 }
 .mobile-nav a:hover {
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--accent-2);
+    background: rgba(139, 92, 246, 0.1);
 }
 
-/* overlay при открытом меню */
+/* Открытие мобильного меню при активации чекбокса */
+#menu-toggle:checked ~ .site-wrapper .mobile-nav {
+  transform: translateX(0%);
+}
 .site-wrapper::before {
   content: "";
   position: fixed;
@@ -705,227 +715,18 @@ main h2 {
   transition: background 300ms ease;
   z-index: 110;
 }
+/* Затемнение фона при открытом меню */
 #menu-toggle:checked ~ .site-wrapper::before {
   background: rgba(0, 0, 0, 0.45);
   pointer-events: auto;
 }
-
-/* показать mobile-nav при отмеченном чекбоксе */
-#menu-toggle:checked ~ .site-wrapper .mobile-nav {
-  transform: translateX(0%);
-}
-
-/* анимация бургера в крестик */
-#menu-toggle:checked
-  ~ .site-wrapper
-  .site-header
-  .header-inner
-  .burger
-  .burger-line:nth-child(1) {
+/* Анимация бургера */
+#menu-toggle:checked ~ .site-wrapper .site-header .header-inner .burger .burger-line:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
 }
-#menu-toggle:checked
-  ~ .site-wrapper
-  .site-header
-  .header-inner
-  .burger
-  .burger-line:nth-child(2) {
+#menu-toggle:checked ~ .site-wrapper .site-header .header-inner .burger .burger-line:nth-child(2) {
   opacity: 0;
 }
-#menu-toggle:checked
-  ~ .site-wrapper
-  .site-header
-  .header-inner
-  .burger
-  .burger-line:nth-child(3) {
+#menu-toggle:checked ~ .site-wrapper .site-header .header-inner .burger .burger-line:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
 }
-
-/* поведение по брейкпоинтам */
-@media (max-width: 767px) {
-  .burger {
-    display: inline-flex;
-  }
-  .main-nav {
-    display: none;
-  } /* скрываем горизонтальную навигацию на мобилке */
-  .header-inner {
-    gap: 12px;
-  }
-  .logo img {
-    width: 120px;
-  }
-}
-@media (min-width: 768px) {
-  .mobile-nav {
-    display: none;
-  }
-  .burger {
-    display: none;
-  }
-  .main-nav {
-    display: block;
-  }
-}
-
-/* Переключение темы — плавные переходы (применяется ко всем элементам) */
-.theme-toggle:checked ~ .site-wrapper,
-.theme-toggle:checked ~ .site-wrapper * {
-  transition: background 240ms ease, color 240ms ease, border-color 240ms ease,
-    box-shadow 240ms ease;
-}
-
-/* ===== конец добавленного блока ===== */
-
-/* ===== утилитарные и переносимые секции вместо inline-style ===== */
-
-/* Вступительные блоки */
-.section-intro {
-  margin: 28px 0;
-}
-.section-intro h1 {
-  margin: 0 0 8px 0;
-}
-.section-intro p {
-  color: var(--muted);
-  margin-top: 8px;
-}
-
-/* Универсальные панели (фон + рамка + отступы) */
-.panel {
-  padding: 18px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
-
-/* Двух- и одно-колоночные сетки */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 20px;
-}
-@media (max-width: 1023px) {
-  .two-col {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Блок методологии/панель с текстом */
-.method-panel {
-  margin-top: 28px;
-}
-
-/* Стили для списка методики (как был в inline ul) */
-.method-list {
-  color: var(--muted);
-  margin-top: 10px;
-  line-height: 1.6;
-  padding-left: 18px;
-}
-
-/* Стили топ‑списка */
-.top-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  counter-reset: rank;
-}
-.top-item {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  padding: 12px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
-.top-item:last-child {
-  margin-bottom: 0;
-}
-.top-rank {
-  font-weight: 800;
-  font-size: 22px;
-  width: 48px;
-  text-align: center;
-}
-.top-thumb {
-  width: 120px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* Сайдбар команда/контакты */
-.aside-panel {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 18px;
-  border-radius: 12px;
-}
-
-/* Контактная форма */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-}
-.form-input,
-.form-textarea {
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  font: inherit;
-}
-.form-textarea {
-  resize: vertical;
-}
-
-/* Стили кнопок формы (повторяют .btn) */
-.contact-form .btn {
-  align-self: flex-start;
-}
-
-/* Потенциальные дополнительные мелкие правки */
-.hero .hero-content {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* Утилитарные отступы — вместо inline style */
-.mt-0 {
-  margin-top: 0 !important;
-}
-.mt-12 {
-  margin-top: 12px !important;
-}
-.mt-18 {
-  margin-top: 18px !important;
-}
-
-/* Повторно определяем muted, если ещё нет */
-.muted {
-  color: var(--muted);
-}
-
-/* Контейнеры (если ещё не заданы) */
-.section-intro {
-  margin: 28px 0;
-}
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 20px;
-}
-@media (max-width: 1023px) {
-  .two-col {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Форма/поля уже используются: .contact-form, .form-input, .form-textarea */
