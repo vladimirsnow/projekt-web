@@ -15,6 +15,15 @@
   .card-body h3 {
     font-size: 15px;
   }
+  .slider {
+    padding: 10px;
+  }
+  #slides-container {
+    gap: 2px;
+  }
+  .slide {
+    max-width: 100%;
+  }
   .slide img {
     width: 100%;
   }
