@@ -16,7 +16,12 @@ root/
 │
 ├── css/
 │   └── style.css
+│   └── reset.css
+│   └── mobile.css
 │
+├── js/
+│   └── script.js
+│     
 ├── img/
 │   └── (изображения проекта)
 └── README.md
